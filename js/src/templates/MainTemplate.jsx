@@ -11,6 +11,7 @@ import HeaderContainer from '../components/Header/Container.jsx'
 import FooterContainer from '../components/Footer/Container.jsx'
 
 import * as siteInfoActions from '../ducks/siteInfo.js'
+import * as postsActions from '../ducks/posts.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
 
@@ -56,7 +57,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    siteInfoActions: bindActionCreators(siteInfoActions, dispatch)
+    siteInfoActions: bindActionCreators(siteInfoActions, dispatch),
+    postsActions: bindActionCreators(postsActions, dispatch)
   }
 }
 

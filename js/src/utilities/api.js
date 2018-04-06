@@ -5,6 +5,11 @@ const api = {
     get: () => {
       return axios.get('/wp-json/')
     }
+  },
+  posts: {
+    get: () => {
+      return axios.get('/wp-json/wp/v2/posts')
+    }
   }
 }
 

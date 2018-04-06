@@ -3,9 +3,7 @@ import React from 'react'
 class FooterPresentation extends React.Component {
   render () {
     return (
-      <div>
-        footer
-      </div>
+      <div>&copy; Chris McCullough {new Date().getFullYear()}</div>
     )
   }
 }

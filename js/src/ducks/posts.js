@@ -2,11 +2,11 @@ import api from '../utilities/api'
 
 const defaultState = {
   fetching: false,
-  data: {}
+  data: []
 }
 
-const FETCHING = 'wp/siteInfo/FETCHING'
-const SET = 'wp/siteInfo/SET'
+const FETCHING = 'wp/posts/FETCHING'
+const SET = 'wp/posts/SET'
 
 export default function reducer (state = defaultState, action = {}) {
   switch (action.type) {
@@ -45,6 +45,6 @@ export function set (data) {
 export function get (data) {
   return function (dispatch) {
     dispatch(fetching())
-    return api.siteInfo.get()
+    return api.posts.get()
   }
 }
