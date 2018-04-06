@@ -9,7 +9,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers/index.js'
 const store = createStore(
   rootReducer,
-  applyMiddleware(logger, thunk)
+  applyMiddleware(thunk, logger)
 )
 
 import App from './components/App.jsx'

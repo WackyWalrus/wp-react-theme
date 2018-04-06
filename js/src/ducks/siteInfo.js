@@ -1,15 +1,25 @@
 import api from '../utilities/api'
 
-const defaultState = {}
+const defaultState = {
+  fetching: false,
+  data: {}
+}
 
-const FETCH = 'wp/siteInfo/FETCH'
+const FETCHING = 'wp/siteInfo/FETCHING'
+const SET = 'wp/siteInfo/SET'
 
 export default function reducer (state = defaultState, action = {}) {
   switch (action.type) {
-    case FETCH:
+    case FETCHING:
       return {
         ...state,
-        ...action.data
+        fetching: action.status
+      }
+
+    case SET:
+      return {
+        ...state,
+        data: action.data
       }
 
     default:
@@ -17,11 +27,23 @@ export default function reducer (state = defaultState, action = {}) {
   }
 }
 
+export function fetching (status = true) {
+  return {
+    type: FETCHING,
+    status: status
+  }
+}
+
+export function set (data) {
+  return {
+    type: SET,
+    data: data
+  }
+}
+
 export function get (data) {
   return function (dispatch) {
+    dispatch(fetching())
     return api.siteInfo.get()
-      .then(response => {
-        console.log(response)
-      })
   }
 }

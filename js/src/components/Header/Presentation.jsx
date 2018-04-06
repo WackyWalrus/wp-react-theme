@@ -21,9 +21,14 @@ class HeaderPresentation extends React.Component {
   }
 
   render () {
+    const {
+      name,
+      description
+    } = this.props
+
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">{name} <span>{description}</span></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>

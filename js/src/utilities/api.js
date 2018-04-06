@@ -1,9 +1,11 @@
 import axios from 'axios'
 
-return {
+const api = {
   siteInfo: {
     get: () => {
       return axios.get('/wp-json/')
     }
   }
 }
+
+export default api
