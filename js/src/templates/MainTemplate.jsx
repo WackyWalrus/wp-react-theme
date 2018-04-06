@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import {
   Container
@@ -26,4 +28,10 @@ MainTemplate.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default MainTemplate
+const mapStateToProps = (state) => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainTemplate)
