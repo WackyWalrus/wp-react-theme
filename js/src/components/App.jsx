@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 
 import routes from '../routes/routes.js'
 
+import 'bootstrap/scss/bootstrap.scss'
+
 class App extends React.Component {
   render () {
     return (

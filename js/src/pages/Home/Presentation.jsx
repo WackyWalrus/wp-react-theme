@@ -1,9 +1,13 @@
 import React from 'react'
 
+import MainTemplate from '../../templates/MainTemplate.jsx'
+
 class HomePresentation extends React.Component {
   render () {
     return (
-      <div>Homepage</div>
+      <MainTemplate>
+        <p>Homepage</p>
+      </MainTemplate>
     )
   }
 }
