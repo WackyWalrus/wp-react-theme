@@ -19,7 +19,6 @@ class HomeContainer extends React.Component {
   }
 
   render () {
-
     return (
       <HomePresentation posts={Object.values(this.props.posts.data)} />
     )
