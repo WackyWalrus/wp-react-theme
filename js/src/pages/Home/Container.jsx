@@ -6,12 +6,14 @@ import HomePresentation from './Presentation.jsx'
 
 import * as postsActions from '../../ducks/posts.js'
 
+import normalizeResponseData from '../../utilities/normalizeResponseData.js'
+
 class HomeContainer extends React.Component {
   componentDidMount () {
     this.props.postsActions.get()
       .then(response => {
         if (response.status === 200) {
-          this.props.postsActions.set(response.data)
+          this.props.postsActions.set(normalizeResponseData(response.data))
         }
       })
   }
@@ -19,7 +21,7 @@ class HomeContainer extends React.Component {
   render () {
 
     return (
-      <HomePresentation posts={this.props.posts.data} />
+      <HomePresentation posts={Object.values(this.props.posts.data)} />
     )
   }
 }

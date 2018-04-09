@@ -28,16 +28,17 @@ class HeaderPresentation extends React.Component {
 
     return (
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">{name} <span>{description}</span></NavbarBrand>
+        <NavbarBrand tag={Link} to="/">{name} <span>{description}</span></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink tag={Link} to='/portfolio/'>Portfolio</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
+            {this.props.pages.map((page, index) => {
+              return (
+                <NavItem key={`page-link-${index}`}>
+                  <NavLink tag={Link} to={`/${page.slug}/`}>{page.title.rendered}</NavLink>
+                </NavItem>
+              )
+            })}
           </Nav>
         </Collapse>
       </Navbar>

@@ -22,8 +22,6 @@ class PagePresentation extends React.Component {
       content
     } = this.props.page
 
-    console.log(content)
-
     return {
       __html: content.rendered
     }
