@@ -1,15 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class PostPresentation extends React.Component {
   render () {
     const {
       id,
-      title
+      title,
+      slug
     } = this.props
     
     return (
       <div>
-        <h2>{title.rendered}</h2>
+        <h2><Link to={`/${slug}/`}>{title.rendered}</Link></h2>
         <div dangerouslySetInnerHTML={this.markup()} />
       </div>
     )
