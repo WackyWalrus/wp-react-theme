@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux'
 
 import * as postsActions from '../../ducks/posts.js'
 import * as pagesActions from '../../ducks/pages.js'
+import * as categoriesActions from '../../ducks/categories.js'
 
-import pageOrPostSelector from '../../selectors/pageOrPostSelector.js'
+import slugSelector from '../../selectors/slugSelector.js'
 
 import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
@@ -20,6 +21,10 @@ class DetermineContainer extends React.Component {
     this.props.pagesActions.get()
       .then(response => {
         this.props.pagesActions.set(normalizeResponseData(response.data))
+      })
+    this.props.categoriesActions.get()
+      .then(response => {
+        this.props.categoriesActions.set(normalizeResponseData(response.data))
       })
   }
   
@@ -38,14 +43,16 @@ const mapStateToProps = (state, props) => {
   return {
     pages: state.pages,
     posts: state.posts,
-    post: pageOrPostSelector(state, props.match.params.permalink)
+    categories: state.categories,
+    post: slugSelector(state, props.match.params.permalink)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     postsActions: bindActionCreators(postsActions, dispatch),
-    pagesActions: bindActionCreators(pagesActions, dispatch)
+    pagesActions: bindActionCreators(pagesActions, dispatch),
+    categoriesActions: bindActionCreators(categoriesActions, dispatch)
   }
 }
 

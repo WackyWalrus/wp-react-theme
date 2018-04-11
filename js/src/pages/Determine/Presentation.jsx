@@ -2,6 +2,7 @@ import React from 'react'
 
 import PageContainer from '../Page/Container.jsx'
 import PostContainer from '../Post/Container.jsx'
+import CategoryContainer from '../Category/Container.jsx'
 
 class DeterminePresentation extends React.Component {
   render () {
@@ -18,6 +19,12 @@ class DeterminePresentation extends React.Component {
     if (post.type === 'post') {
       return (
         <PostContainer post={post} />
+      )
+    }
+
+    if (post.taxonomy === 'category') {
+      return (
+        <CategoryContainer category={post} />
       )
     }
 
