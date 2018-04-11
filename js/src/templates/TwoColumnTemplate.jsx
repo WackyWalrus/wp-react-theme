@@ -2,9 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Link } from 'react-router-dom'
 
 import {
-  Container
+  Container,
+  Col,
+  Row,
+  ListGroup,
+  ListGroupItem
 } from 'reactstrap'
 
 import HeaderContainer from '../components/Header/Container.jsx'
@@ -12,6 +17,7 @@ import FooterContainer from '../components/Footer/Container.jsx'
 
 import * as siteInfoActions from '../ducks/siteInfo.js'
 import * as postsActions from '../ducks/posts.js'
+import * as categoriesActions from '../ducks/categories.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
 
@@ -23,14 +29,40 @@ class TwoColumnTemplate extends React.Component {
           this.props.siteInfoActions.set(response.data)
         }
       })
+    
+    this.props.categoriesActions.get()
+      .then(response => {
+        if (response.status === 200) {
+          this.props.categoriesActions.set(response.data)
+        }
+      })
   }
   
   render () {
+    const {
+      categories
+    } = this.props
+
     return (
       <Container fluid>
         <HeaderContainer {...this.props.headerData} />
         
-        {this.props.children}
+        <Row>
+          <Col md={8}>
+            {this.props.children}
+          </Col>
+          <Col md={4}>
+            <ListGroup>
+              {categories.map((category, index) => {
+                return (
+                  <ListGroupItem
+                    tag={Link}
+                    to={`/${category.slug}/`}>{category.name}</ListGroupItem>
+                )
+              })}
+            </ListGroup>
+          </Col>
+        </Row>
 
         <FooterContainer />
       </Container>
@@ -38,16 +70,22 @@ class TwoColumnTemplate extends React.Component {
   }
 }
 
+TwoColumnTemplate.defaultProps = {
+  categories: []
+}
+
 const mapStateToProps = (state) => {
   return {
-    headerData: headerDataSelector(state)
+    headerData: headerDataSelector(state),
+    categories: state.categories.data
   }
 }
 
 const mapDispatchtoProps = (dispatch) => {
   return {
     siteInfoActions: bindActionCreators(siteInfoActions, dispatch),
-    postsActions: bindActionCreators(postsActions, dispatch)
+    postsActions: bindActionCreators(postsActions, dispatch),
+    categoriesActions: bindActionCreators(categoriesActions, dispatch)
   }
 }
 

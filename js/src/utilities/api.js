@@ -15,6 +15,11 @@ const api = {
     get: () => {
       return axios.get('/wp-json/wp/v2/pages')
     }
+  },
+  categories: {
+    get: () => {
+      return axios.get('/wp-json/wp/v2/categories')
+    }
   }
 }
 
