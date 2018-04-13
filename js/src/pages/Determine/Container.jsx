@@ -24,7 +24,7 @@ class DetermineContainer extends React.Component {
       })
     this.props.categoriesActions.get()
       .then(response => {
-        this.props.categoriesActions.set(normalizeResponseData(response.data))
+        this.props.categoriesActions.set(response.data)
       })
   }
   

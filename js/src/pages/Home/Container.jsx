@@ -7,6 +7,7 @@ import HomePresentation from './Presentation.jsx'
 import * as postsActions from '../../ducks/posts.js'
 
 import normalizeResponseData from '../../utilities/normalizeResponseData.js'
+import TwoColumnTemplate from '../../templates/TwoColumnTemplate.jsx';
 
 class HomeContainer extends React.Component {
   componentDidMount () {
@@ -20,7 +21,9 @@ class HomeContainer extends React.Component {
 
   render () {
     return (
-      <HomePresentation posts={Object.values(this.props.posts.data)} />
+      <TwoColumnTemplate>
+        <HomePresentation posts={Object.values(this.props.posts.data)} />
+      </TwoColumnTemplate>
     )
   }
 }

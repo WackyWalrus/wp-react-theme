@@ -7,8 +7,14 @@ const api = {
     }
   },
   posts: {
-    get: () => {
-      return axios.get('/wp-json/wp/v2/posts')
+    get: (args = {}) => {
+      let url = '/wp-json/wp/v2/posts?'
+
+      for (let i in args) {
+        url += `${i}=${args[i]}&`
+      }
+
+      return axios.get(url)
     }
   },
   pages: {

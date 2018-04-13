@@ -20,6 +20,7 @@ import * as postsActions from '../ducks/posts.js'
 import * as categoriesActions from '../ducks/categories.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
+import normalizeResponseData from '../utilities/normalizeResponseData.js'
 
 class TwoColumnTemplate extends React.Component {
   componentDidMount () {
@@ -33,7 +34,7 @@ class TwoColumnTemplate extends React.Component {
     this.props.categoriesActions.get()
       .then(response => {
         if (response.status === 200) {
-          this.props.categoriesActions.set(response.data)
+          this.props.categoriesActions.set(normalizeResponseData(response.data))
         }
       })
   }
@@ -53,9 +54,10 @@ class TwoColumnTemplate extends React.Component {
           </Col>
           <Col md={4}>
             <ListGroup>
-              {categories.map((category, index) => {
+              {Object.values(categories).map((category, index) => {
                 return (
                   <ListGroupItem
+                    key={`category-${index}`}
                     tag={Link}
                     to={`/${category.slug}/`}>{category.name}</ListGroupItem>
                 )

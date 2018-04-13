@@ -1,3 +1,5 @@
+import normalizeResponseData from '../utilities/normalizeResponseData.js'
+
 export default function pageOrPostSelector (state, slug) {
   const {
     pages,
@@ -17,9 +19,11 @@ export default function pageOrPostSelector (state, slug) {
     }
   }
 
-  if (Object.keys(categories.data).length !== 0) {
-    if (categories.data.hasOwnProperty(slug)) {
-      return categories.data[slug]
+  if (categories.data.length !== 0) {
+    for (let i = 0; i < categories.length; i += 1) {
+      if (categories[i].slug === slug) {
+        return categories[i]
+      }
     }
   }
 
