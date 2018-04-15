@@ -14,6 +14,7 @@ import {
 
 import HeaderContainer from '../components/Header/Container.jsx'
 import FooterContainer from '../components/Footer/Container.jsx'
+import CategoryListContainer from '../components/CategoryList/Container.jsx'
 
 import * as siteInfoActions from '../ducks/siteInfo.js'
 import * as postsActions from '../ducks/posts.js'
@@ -52,16 +53,9 @@ class TwoColumnTemplate extends React.Component {
             {this.props.children}
           </Col>
           <Col md={4}>
-            <ListGroup>
-              {categories.map((category, index) => {
-                return (
-                  <ListGroupItem
-                    key={`categories-${index}`}
-                    tag={Link}
-                    to={`/${category.slug}/`}>{category.name}</ListGroupItem>
-                )
-              })}
-            </ListGroup>
+            <CategoryListContainer
+              wrapper={ListGroup}
+              item={ListGroupItem} />
           </Col>
         </Row>
 
