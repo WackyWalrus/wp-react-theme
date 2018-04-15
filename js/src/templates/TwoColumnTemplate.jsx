@@ -56,6 +56,7 @@ class TwoColumnTemplate extends React.Component {
               {categories.map((category, index) => {
                 return (
                   <ListGroupItem
+                    key={`categories-${index}`}
                     tag={Link}
                     to={`/${category.slug}/`}>{category.name}</ListGroupItem>
                 )
