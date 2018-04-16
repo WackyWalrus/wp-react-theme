@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 import routes from '../routes/routes.js'
 
@@ -11,7 +10,7 @@ class App extends React.Component {
     return (
       <Switch>
         <Route path='/:permalink' component={routes.Determine} />
-        <Route exact path='/' component={routes.Homepage} />
+        <Route path='/' component={routes.Homepage} />
       </Switch>
     )
   }

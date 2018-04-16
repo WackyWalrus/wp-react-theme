@@ -34,7 +34,7 @@ class TwoColumnTemplate extends React.Component {
     this.props.categoriesActions.get()
       .then(response => {
         if (response.status === 200) {
-          this.props.categoriesActions.set(normalizeResponseData(response.data))
+          this.props.categoriesActions.set(response.data)
         }
       })
   }

@@ -20,9 +20,9 @@ export default function pageOrPostSelector (state, slug) {
   }
 
   if (categories.data.length !== 0) {
-    for (let i = 0; i < categories.length; i += 1) {
-      if (categories[i].slug === slug) {
-        return categories[i]
+    for (let i = 0; i < categories.data.length; i += 1) {
+      if (categories.data[i].slug === slug) {
+        return categories.data[i]
       }
     }
   }

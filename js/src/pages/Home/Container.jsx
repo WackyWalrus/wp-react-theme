@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import HomePresentation from './Presentation.jsx'
 
@@ -20,6 +21,7 @@ class HomeContainer extends React.Component {
   }
 
   render () {
+    console.log('homepage')
     return (
       <TwoColumnTemplate>
         <HomePresentation posts={Object.values(this.props.posts.data)} />

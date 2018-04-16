@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import * as postsActions from '../../ducks/posts.js'
 import * as pagesActions from '../../ducks/pages.js'
@@ -26,6 +27,10 @@ class DetermineContainer extends React.Component {
       .then(response => {
         this.props.categoriesActions.set(response.data)
       })
+  }
+
+  componentDidUpdate (prevProps) {
+    console.log(prevProps)
   }
   
   render () {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import CategoryPresentation from './Presentation.jsx'
 import TwoColumnTemplate from '../../templates/TwoColumnTemplate.jsx'
@@ -11,7 +12,9 @@ import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
 class CategoryContainer extends React.Component {
   componentDidMount () {
-    this.props.postsActions.get()
+    this.props.postsActions.get({
+      categories: this.props.category.id
+    })
       .then(response => {
         if (response.status === 200) {
           this.props.postsActions.set(normalizeResponseData(response.data))
@@ -20,7 +23,7 @@ class CategoryContainer extends React.Component {
   }
 
   render () {
-    console.log('test')
+    console.log('category')
     return (
       <TwoColumnTemplate>
         <CategoryPresentation posts={Object.values(this.props.posts.data)} />
