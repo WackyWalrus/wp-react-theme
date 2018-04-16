@@ -12,6 +12,24 @@ import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
 class CategoryContainer extends React.Component {
   componentDidMount () {
+    this.getCategoryPosts()
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.category.id !== prevProps.category.id) {
+      this.getCategoryPosts()
+    }
+  }
+  
+  render () {
+    return (
+      <TwoColumnTemplate>
+        <CategoryPresentation posts={Object.values(this.props.posts.data)} />
+      </TwoColumnTemplate>
+    )
+  }
+  
+  getCategoryPosts () {
     this.props.postsActions.get({
       categories: this.props.category.id
     })
@@ -20,15 +38,6 @@ class CategoryContainer extends React.Component {
           this.props.postsActions.set(normalizeResponseData(response.data))
         }
       })
-  }
-
-  render () {
-    console.log('category')
-    return (
-      <TwoColumnTemplate>
-        <CategoryPresentation posts={Object.values(this.props.posts.data)} />
-      </TwoColumnTemplate>
-    )
   }
 }
 

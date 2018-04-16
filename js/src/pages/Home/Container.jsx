@@ -21,7 +21,6 @@ class HomeContainer extends React.Component {
   }
 
   render () {
-    console.log('homepage')
     return (
       <TwoColumnTemplate>
         <HomePresentation posts={Object.values(this.props.posts.data)} />
@@ -46,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))

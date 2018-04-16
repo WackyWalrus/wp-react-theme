@@ -2,11 +2,12 @@ import api from '../utilities/api'
 
 const defaultState = {
   fetching: false,
-  data: []
+  type: '',
+  data: {}
 }
 
-const FETCHING = 'wp/pages/FETCHING'
-const SET = 'wp/pages/SET'
+const FETCHING = 'wp/current/FETCHING'
+const SET = 'wp/current/SET'
 
 export default function reducer (state = defaultState, action = {}) {
   switch (action.type) {
@@ -20,7 +21,8 @@ export default function reducer (state = defaultState, action = {}) {
       return {
         ...state,
         fetching: false,
-        data: action.data
+        data: action.data,
+        type: action.dataType
       }
 
     default:
@@ -35,16 +37,10 @@ export function fetching (status = true) {
   }
 }
 
-export function set (data) {
+export function set (data = {}, type = '') {
   return {
     type: SET,
-    data: data
-  }
-}
-
-export function get (params = {}) {
-  return function (dispatch) {
-    dispatch(fetching())
-    return api.pages.get(params)
+    data: data,
+    dataType: type
   }
 }
