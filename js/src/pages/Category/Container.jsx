@@ -7,13 +7,13 @@ import CategoryPresentation from './Presentation.jsx'
 import TwoColumnTemplate from '../../templates/TwoColumnTemplate.jsx'
 
 import * as postsActions from '../../ducks/posts.js'
+import * as categoriesActions from '../../ducks/categories.js'
 
 import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
 class CategoryContainer extends React.Component {
   componentDidMount () {
-    console.log(this.props)
-    // this.getCategoryPosts()
+    this.props.categoriesActions.get()
   }
   
   render () {
@@ -49,7 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    postsActions: bindActionCreators(postsActions, dispatch)
+    postsActions: bindActionCreators(postsActions, dispatch),
+    categoriesActions: bindActionCreators(categoriesActions, dispatch)
   }
 }
 
