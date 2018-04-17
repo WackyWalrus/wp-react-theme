@@ -13,7 +13,13 @@ import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
 class CategoryContainer extends React.Component {
   componentDidMount () {
-    this.props.categoriesActions.get()
+    this.getCategoryPosts()
+  }
+  
+  componentDidUpdate (prevProps) {
+    if (this.props.match.params.category !== prevProps.match.params.category) {
+      this.getCategoryPosts()
+    }
   }
   
   render () {
@@ -23,14 +29,20 @@ class CategoryContainer extends React.Component {
       </TwoColumnTemplate>
     )
   }
-  
-  getCategoryPosts () {
-    this.props.postsActions.get({
-      categories: this.props.category.id
-    })
+
+  getCategoryPosts = () => {
+    this.props.categoriesActions.get()
       .then(response => {
-        if (response.status === 200) {
-          this.props.postsActions.set(normalizeResponseData(response.data))
+        this.props.categoriesActions.set(normalizeResponseData(response.data))
+
+        let category = this.props.categories.data[this.props.match.params.category]
+
+        if (category) {
+          this.props.postsActions.get({
+            categories: category.id
+          }).then(response => {
+            this.props.postsActions.set(normalizeResponseData(response.data))
+          })
         }
       })
   }

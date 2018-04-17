@@ -15,9 +15,14 @@ class CategoryListPresentation extends React.Component {
 
     return (
       <ListGroup>
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           return (
-            <ListGroupItem tag={Link} to={`/category/${category.slug}`}>{category.name}</ListGroupItem>
+            <ListGroupItem
+              key={`category-${index}`}
+              tag={Link}
+              to={`/category/${category.slug}`} >
+              {category.name}
+            </ListGroupItem>
           )
         })}
       </ListGroup>

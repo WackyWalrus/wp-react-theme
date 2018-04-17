@@ -30,11 +30,6 @@ CategoryListContainer.defaultProps = {
   item: 'li'
 }
 
-CategoryListContainer.propTypes = {
-  wrapper: PropTypes.node,
-  item: PropTypes.node
-}
-
 const mapStateToProps = (state) => {
   return {
     categories: state.categories
