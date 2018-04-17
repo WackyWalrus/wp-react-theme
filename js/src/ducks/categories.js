@@ -2,7 +2,7 @@ import api from '../utilities/api'
 
 const defaultState = {
   fetching: false,
-  data: []
+  data: {}
 }
 
 const FETCHING = 'wp/categories/FETCHING'

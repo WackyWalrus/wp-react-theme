@@ -19,7 +19,8 @@ class CategoryListContainer extends React.Component {
 
   render () {
     return (
-      <CategoryListPresentation />
+      <CategoryListPresentation
+        categories={Object.values(this.props.categories.data)} />
     )
   }
 }

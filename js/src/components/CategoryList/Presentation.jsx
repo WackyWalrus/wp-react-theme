@@ -1,8 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
+
+import {
+  ListGroup,
+  ListGroupItem
+} from 'reactstrap'
 
 class CategoryListPresentation extends React.Component {
   render () {
-    <div />
+    const {
+      categories
+    } = this.props
+
+    return (
+      <ListGroup>
+        {categories.map((category) => {
+          return (
+            <ListGroupItem tag={Link} to={`/${category.slug}`}>{category.name}</ListGroupItem>
+          )
+        })}
+      </ListGroup>
+    )
   }
 }
 
