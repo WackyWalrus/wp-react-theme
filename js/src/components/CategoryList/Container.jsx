@@ -5,18 +5,11 @@ import { bindActionCreators } from 'redux'
 
 import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
-import * as categoriesActions from '../../ducks/categories.js'
+import withCategories from '../../containers/withCategories.js'
 
 import CategoryListPresentation from './Presentation.jsx'
 
 class CategoryListContainer extends React.Component {
-  componentDidMount () {
-    this.props.categoriesActions.get()
-      .then(response => {
-        this.props.categoriesActions.set(normalizeResponseData(response.data))
-      })
-  }
-
   render () {
     return (
       <CategoryListPresentation
@@ -36,10 +29,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    categoriesActions: bindActionCreators(categoriesActions, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryListContainer)
+export default withCategories (
+  connect(mapStateToProps)(CategoryListContainer)
+)

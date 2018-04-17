@@ -12,34 +12,17 @@ import {
   ListGroupItem
 } from 'reactstrap'
 
+import withSiteInfo from '../containers/withSiteInfo.js'
+
 import HeaderContainer from '../components/Header/Container.jsx'
 import FooterContainer from '../components/Footer/Container.jsx'
 import CategoryListContainer from '../components/CategoryList/Container.jsx'
 
-import * as siteInfoActions from '../ducks/siteInfo.js'
 import * as postsActions from '../ducks/posts.js'
-import * as categoriesActions from '../ducks/categories.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
-import normalizeResponseData from '../utilities/normalizeResponseData.js'
 
 class TwoColumnTemplate extends React.Component {
-  componentDidMount () {
-    this.props.siteInfoActions.get()
-      .then(response => {
-        if (response.status === 200) {
-          this.props.siteInfoActions.set(response.data)
-        }
-      })
-    
-    this.props.categoriesActions.get()
-      .then(response => {
-        if (response.status === 200) {
-          this.props.categoriesActions.set(response.data)
-        }
-      })
-  }
-  
   render () {
     const {
       categories
@@ -66,23 +49,18 @@ class TwoColumnTemplate extends React.Component {
   }
 }
 
-TwoColumnTemplate.defaultProps = {
-  categories: []
-}
-
 const mapStateToProps = (state) => {
   return {
-    headerData: headerDataSelector(state),
-    categories: state.categories.data
+    headerData: headerDataSelector(state)
   }
 }
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-    siteInfoActions: bindActionCreators(siteInfoActions, dispatch),
-    postsActions: bindActionCreators(postsActions, dispatch),
-    categoriesActions: bindActionCreators(categoriesActions, dispatch)
+    postsActions: bindActionCreators(postsActions, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(TwoColumnTemplate)
+export default withSiteInfo (
+  connect(mapStateToProps, mapDispatchtoProps)(TwoColumnTemplate)
+)

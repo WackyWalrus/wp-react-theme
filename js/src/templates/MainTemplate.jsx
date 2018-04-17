@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import withSiteInfo from '../containers/withSiteInfo.js'
+
 import {
   Container
 } from 'reactstrap'
@@ -10,21 +12,11 @@ import {
 import HeaderContainer from '../components/Header/Container.jsx'
 import FooterContainer from '../components/Footer/Container.jsx'
 
-import * as siteInfoActions from '../ducks/siteInfo.js'
 import * as postsActions from '../ducks/posts.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
 
 class MainTemplate extends React.Component {
-  componentDidMount () {
-    this.props.siteInfoActions.get()
-      .then(response => {
-        if (response.status === 200) {
-          this.props.siteInfoActions.set(response.data)
-        }
-      })
-  }
-  
   render () {
     return (
       <Container fluid>
@@ -57,9 +49,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    siteInfoActions: bindActionCreators(siteInfoActions, dispatch),
     postsActions: bindActionCreators(postsActions, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainTemplate)
+export default withSiteInfo (
+  connect(mapStateToProps, mapDispatchToProps)(MainTemplate)
+)
