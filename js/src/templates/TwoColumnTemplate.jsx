@@ -21,6 +21,7 @@ import * as postsActions from '../ducks/posts.js'
 import * as categoriesActions from '../ducks/categories.js'
 
 import headerDataSelector from '../selectors/headerDataSelector.js'
+import normalizeResponseData from '../utilities/normalizeResponseData.js'
 
 class TwoColumnTemplate extends React.Component {
   componentDidMount () {

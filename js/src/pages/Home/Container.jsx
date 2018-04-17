@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 
 import HomePresentation from './Presentation.jsx'
 
 import * as postsActions from '../../ducks/posts.js'
 
 import normalizeResponseData from '../../utilities/normalizeResponseData.js'
+import TwoColumnTemplate from '../../templates/TwoColumnTemplate.jsx';
 
 class HomeContainer extends React.Component {
   componentDidMount () {
@@ -20,7 +22,9 @@ class HomeContainer extends React.Component {
 
   render () {
     return (
-      <HomePresentation posts={Object.values(this.props.posts.data)} />
+      <TwoColumnTemplate>
+        <HomePresentation posts={Object.values(this.props.posts.data)} />
+      </TwoColumnTemplate>
     )
   }
 }
@@ -41,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))

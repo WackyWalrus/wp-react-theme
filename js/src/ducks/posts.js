@@ -42,9 +42,9 @@ export function set (data) {
   }
 }
 
-export function get (data) {
+export function get (params = {}) {
   return function (dispatch) {
     dispatch(fetching())
-    return api.posts.get()
+    return api.posts.get(params)
   }
 }

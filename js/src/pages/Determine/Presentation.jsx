@@ -1,23 +1,43 @@
 import React from 'react'
+import Route from 'react-router-dom'
 
 import PageContainer from '../Page/Container.jsx'
 import PostContainer from '../Post/Container.jsx'
+import CategoryContainer from '../Category/Container.jsx'
 
 class DeterminePresentation extends React.Component {
   render () {
     const {
-      post
+      current,
+      loading
     } = this.props
     
-    if (post.type === 'page') {
+    const {
+      type,
+      data
+    } = current
+
+    if (type === 'page') {
       return (
-        <PageContainer page={post} />
+        <PageContainer
+          loading={loading}  
+          page={data[0]} />
       )
     }
 
-    if (post.type === 'post') {
+    if (type === 'post') {
       return (
-        <PostContainer post={post} />
+        <PostContainer
+          loading={loading}
+          post={data[0]} />
+      )
+    }
+
+    if (type === 'category') {
+      return (
+        <CategoryContainer
+          loading={loading}
+          category={data[0]} />
       )
     }
 
