@@ -12,13 +12,8 @@ import normalizeResponseData from '../../utilities/normalizeResponseData.js'
 
 class CategoryContainer extends React.Component {
   componentDidMount () {
-    this.getCategoryPosts()
-  }
-
-  componentDidUpdate (prevProps) {
-    if (this.props.category.id !== prevProps.category.id) {
-      this.getCategoryPosts()
-    }
+    console.log(this.props)
+    // this.getCategoryPosts()
   }
   
   render () {
@@ -47,6 +42,7 @@ CategoryContainer.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
+    categories: state.categories,
     posts: state.posts
   }
 }

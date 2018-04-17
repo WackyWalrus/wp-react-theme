@@ -9,6 +9,7 @@ class App extends React.Component {
   render () {
     return (
       <Switch>
+        <Route path='/category/:category' component={routes.Category} />
         <Route path='/:permalink' component={routes.Determine} />
         <Route path='/' component={routes.Homepage} />
       </Switch>

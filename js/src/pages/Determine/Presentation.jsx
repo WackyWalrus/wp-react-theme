@@ -33,14 +33,6 @@ class DeterminePresentation extends React.Component {
       )
     }
 
-    if (type === 'category') {
-      return (
-        <CategoryContainer
-          loading={loading}
-          category={data[0]} />
-      )
-    }
-
     return null
   }
 }

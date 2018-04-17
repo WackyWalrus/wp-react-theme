@@ -61,25 +61,9 @@ class DetermineContainer extends React.Component {
     }).then(response => {
       this.props.pagesActions.fetching(false)
 
-      if (response.data.length === 0) {
-        this.getCategory()
-      } else {
+      if (response.data.length !== 0) {
         this.props.currentActions.set(response.data, 'page')
-      }
-    })
-  }
-
-  getCategory () {
-    this.props.categoriesActions.get({
-      slug: this.props.match.params.permalink
-    }).then(response => {
-      this.props.categoriesActions.fetching(false)
-
-      if (response.data.length === 0) {
-        this.getCategory()
-      } else {
-        this.props.currentActions.set(response.data, 'category')
-      }
+      } 
     })
   }
 }
