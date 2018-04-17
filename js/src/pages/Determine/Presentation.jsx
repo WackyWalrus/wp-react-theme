@@ -8,25 +8,36 @@ import CategoryContainer from '../Category/Container.jsx'
 class DeterminePresentation extends React.Component {
   render () {
     const {
+      current,
+      loading
+    } = this.props
+    
+    const {
       type,
       data
-    } = this.props.current
+    } = current
 
     if (type === 'page') {
       return (
-        <PageContainer page={data[0]} />
+        <PageContainer
+          loading={loading}  
+          page={data[0]} />
       )
     }
 
     if (type === 'post') {
       return (
-        <PostContainer post={data[0]} />
+        <PostContainer
+          loading={loading}
+          post={data[0]} />
       )
     }
 
     if (type === 'category') {
       return (
-        <CategoryContainer category={data[0]} />
+        <CategoryContainer
+          loading={loading}
+          category={data[0]} />
       )
     }
 

@@ -17,10 +17,25 @@ class DetermineContainer extends React.Component {
     this.props.currentActions.set({}, '')
     this.getPost()
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.url !== this.props.match.url) {
+      this.getPost()
+    }
+  }
   
   render () {
+    const {
+      current,
+      posts,
+      categories,
+      pages
+    } = this.props
+
     return (
-      <DeterminePresentation current={this.props.current} />
+      <DeterminePresentation 
+        current={current}
+        loading={posts.fetching || categories.fetching || pages.fetching} />
     )
   }
 
