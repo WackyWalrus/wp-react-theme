@@ -10,12 +10,14 @@ export default function withCategories (WrapperComponent) {
 
   class With extends React.Component {
     componentDidMount () {
-      this.props.categoriesActions.get()
-        .then(response => {
-          if (response.status === 200) {
-            this.props.categoriesActions.set(normalizeResponseData(response.data))
-          }
-        })
+      if (Object.values(this.props.categories.data).length === 0) {
+        this.props.categoriesActions.get()
+          .then(response => {
+            if (response.status === 200) {
+              this.props.categoriesActions.set(normalizeResponseData(response.data))
+            }
+          })
+      }
     }
     
     render () {

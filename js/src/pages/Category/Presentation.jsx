@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import TwoColumnTemplate from '../../templates/TwoColumnTemplate.jsx'
+
 import PostContainer from '../../components/Post/Container.jsx'
 
 class CategoryPresentation extends React.Component {
@@ -9,13 +11,17 @@ class CategoryPresentation extends React.Component {
       posts
     } = this.props
     
-    return posts.map((post, index) => {
-      return (
-        <PostContainer
-          key={`post-container-${index}`}
-          post={post} />
-      )
-    })
+    return (
+      <TwoColumnTemplate>
+        {posts.map((post, index) => {
+            return (
+              <PostContainer
+                key={`post-container-${index}`}
+                post={post} />
+            )
+          })}
+      </TwoColumnTemplate>
+    )
   }
 }
 

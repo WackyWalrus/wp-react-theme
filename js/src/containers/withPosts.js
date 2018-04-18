@@ -10,12 +10,13 @@ export default function withPosts (WrapperComponent) {
 
   class With extends React.Component {
     componentDidMount () {
-      this.props.postsActions.get()
-        .then(response => {
-          if (response.status === 200) {
-            this.props.postsActions.set(normalizeResponseData(response.data))
-          }
-        })
+      this.getPosts()
+    }
+
+    componentDidUpdate (prevProps) {
+      if (prevProps.match.params.category !== this.props.match.params.category) {
+        this.getPosts()
+      }
     }
     
     render () {
@@ -23,7 +24,7 @@ export default function withPosts (WrapperComponent) {
         posts
       } = this.props
 
-      if (!posts || Object.values(posts.data).length === 0 || posts.fetching === true) {
+      if (!posts || posts.fetching === true) {
         return null
       }
       
@@ -31,11 +32,29 @@ export default function withPosts (WrapperComponent) {
         <WrapperComponent {...this.props} />
       )
     }
+
+    getPosts () {
+      const {
+        match,
+        categories
+      } = this.props
+      
+      this.props.postsActions.get(
+        match.params.category ?
+        { categories: categories.data[match.params.category].id } :
+        null
+      ).then(response => {
+          if (response.status === 200) {
+            this.props.postsActions.set(normalizeResponseData(response.data))
+          }
+        })
+    }
   }
 
   const mapStateToProps = (state) => {
     return {
-      posts: state.posts
+      posts: state.posts,
+      categories: state.categories
     }
   }
 
