@@ -44,6 +44,12 @@ class HeaderPresentation extends React.Component {
       </Navbar>
     )
   }
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
 }
 
 export default HeaderPresentation
