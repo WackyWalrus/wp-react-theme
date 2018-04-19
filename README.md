@@ -15,3 +15,33 @@ Need to test how this will handle being a child theme first, but if you want to 
 2. Run `npm install`
 3. Run `npm run start`
 4. Start coding
+
+## Files
+
+- js
+  - src
+    - components
+      - CategoryList
+        - [Container.jsx](js/src/components/CategoryList/Container.jsx)
+        - [Presentation.jsx](js/src/components/CategoryList/Presentation.jsx)
+      - Footer
+        - [Container.jsx](js/src/components/Footer/Container.jsx)
+        - Presentation.jsx
+      - Header
+        - Container.jsx
+        - Presentation.jsx
+      - Post
+        - Container.jsx
+        - Presentation.jsx
+      - App.jsx
+    - Containers
+      - withCategories.js
+      - withPosts.js
+      - withSiteInfo.js
+    - ducks
+      - categories.js
+      - current.js
+      - pages.js
+      - posts.js
+      - siteInfo.js
+    - pages
