@@ -5,13 +5,12 @@ class PostPresentation extends React.Component {
   render () {
     const {
       id,
-      title,
       slug
     } = this.props
     
     return (
       <div>
-        <h2><Link to={`/${slug}/`}>{title.rendered}</Link></h2>
+        <h2><Link to={`/${slug}/`} dangerouslySetInnerHTML={this.title()}></Link></h2>
         <div dangerouslySetInnerHTML={this.markup()} />
       </div>
     )
@@ -24,6 +23,16 @@ class PostPresentation extends React.Component {
     
     return {
       __html: content.rendered
+    }
+  }
+
+  title () {
+    const {
+      title
+    } = this.props
+
+    return {
+      __html: title.rendered
     }
   }
 }
