@@ -9,6 +9,10 @@ Basic wordpress theme that runs on React and Redux.
 1. Clone project into your Wordpress `/wp-content/themes/` directory
 2. Turn on `Cmccullough React` in `Appearance -> Themes`
 
+    ### **If you're using [Wordfence](https://www.wordfence.com/)**
+
+    Some parts of the WP JSON API get blocked by Wordfence, so the theme might not work unless you turn off `Prevent discovery of usernames through '/?author=N' scans, the oEmbed API, and the WordPress REST API` under `All Options > Firewall Options > Brute Force Protection` 
+
 ## Customizing
 
 Need to test how this will handle being a child theme first, but if you want to customize this directly:
