@@ -1,17 +1,27 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 class PostPresentation extends React.Component {
   render () {
     const {
       id,
-      slug
+      slug,
+      author,
+      date,
+      user
     } = this.props
     
     return (
-      <div>
-        <h2><Link to={`/${slug}/`} dangerouslySetInnerHTML={this.title()}></Link></h2>
-        <div dangerouslySetInnerHTML={this.markup()} />
+      <div className='post'>
+        <div className='post-meta'>
+          <h2><Link to={`/${slug}/`} dangerouslySetInnerHTML={this.title()}></Link></h2>
+          <span>{moment(date).format('MM/DD/YYYY')} | {user.name}</span>
+        </div>
+        <div
+          className='post-content'
+          dangerouslySetInnerHTML={this.markup()} />
       </div>
     )
   }
@@ -34,6 +44,12 @@ class PostPresentation extends React.Component {
     return {
       __html: title.rendered
     }
+  }
+}
+
+PostPresentation.defaultValues = {
+  user: {
+    name: ''
   }
 }
 

@@ -38,6 +38,17 @@ const api = {
       
       return axios.get(url)
     }
+  },
+  users: {
+    get: (args = {}) => {
+      let url = '/wp-json/wp/v2/users?'
+
+      for (let i in args) {
+        url += `${i}=${args[i]}&`
+      }
+
+      return axios.get(url)
+    }
   }
 }
 
