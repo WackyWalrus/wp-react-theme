@@ -13,15 +13,27 @@ class CategoryPresentation extends React.Component {
     
     return (
       <TwoColumnTemplate>
-        {posts.map((post, index) => {
-            return (
-              <PostContainer
-                key={`post-container-${index}`}
-                post={post} />
-            )
-          })}
+        {this.displayPosts()}
       </TwoColumnTemplate>
     )
+  }
+
+  displayPosts = () => {
+    const {
+      posts
+    } = this.props
+
+    if (posts.length === 0) {
+      return <p>Sorry, no posts found</p>
+    }
+
+    return posts.map((post, index) => {
+      return (
+        <PostContainer
+          key={`post-container-${index}`}
+          post={post} />
+      )
+    })
   }
 }
 
