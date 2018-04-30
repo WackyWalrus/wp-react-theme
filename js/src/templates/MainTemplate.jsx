@@ -19,11 +19,11 @@ import headerDataSelector from '../selectors/headerDataSelector.js'
 class MainTemplate extends React.Component {
   render () {
     return (
-      <Container fluid>
+      <Container>
         <HeaderContainer {...this.props.headerData} />
 
         {this.props.children}
-        
+
         <FooterContainer />
       </Container>
     )

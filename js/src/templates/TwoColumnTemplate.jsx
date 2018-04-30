@@ -29,7 +29,7 @@ class TwoColumnTemplate extends React.Component {
     } = this.props
 
     return (
-      <Container fluid>
+      <Container>
         <HeaderContainer {...this.props.headerData} />
         
         <Row>

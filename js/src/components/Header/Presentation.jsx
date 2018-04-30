@@ -15,6 +15,8 @@ import {
   DropdownItem
 } from 'reactstrap'
 
+import '../../scss/components/Header.scss'
+
 class HeaderPresentation extends React.Component {
   state = {
     isOpen: false

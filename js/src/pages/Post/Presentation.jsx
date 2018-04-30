@@ -5,16 +5,22 @@ import MainTemplate from '../../templates/MainTemplate.jsx'
 
 class PostPresentation extends React.Component {
   render () {
-    const {
-      post
-    } = this.props
-    
     return (
       <MainTemplate>
-        <h2>{post.title.rendered}</h2>
+        <h2 dangerouslySetInnerHTML={this.title()}></h2>
         <div dangerouslySetInnerHTML={this.markup()} />
       </MainTemplate>
     )
+  }
+
+  title () {
+    const {
+      title
+    } = this.props.post
+
+    return {
+      __html: title.rendered
+    }
   }
 
   markup () {
