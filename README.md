@@ -2,7 +2,7 @@
 
 Basic wordpress theme that runs on React and Redux.
 
-![Screenshot](screenshot.png#1)
+![Screenshot](screenshot.png#111)
 
 ## Installation
 
