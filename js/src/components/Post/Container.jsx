@@ -12,10 +12,9 @@ class PostContainer extends React.Component {
   componentDidMount () {
     this.props.usersActions.get({
       id: this.props.post.author
+    }).then(response => {
+      this.props.usersActions.append(normalizeResponseData(response.data, 'id'))
     })
-      .then(response => {
-        this.props.usersActions.append(normalizeResponseData(response.data, 'id'))
-      })
   }
   
   render () {

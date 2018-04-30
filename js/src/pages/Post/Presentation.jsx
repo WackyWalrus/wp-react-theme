@@ -1,14 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 
 import MainTemplate from '../../templates/MainTemplate.jsx'
 
 class PostPresentation extends React.Component {
   render () {
+    const {
+      slug,
+      date,
+      user
+    } = this.props
+    
     return (
       <MainTemplate>
-        <h2 dangerouslySetInnerHTML={this.title()}></h2>
-        <div dangerouslySetInnerHTML={this.markup()} />
+        <div className='post'>
+          <div className='post-meta'>
+            <h2 dangerouslySetInnerHTML={this.title()} />
+            <span>{moment(date).format('MM/DD/YYYY')} | {user.name}</span>
+          </div>
+          <div
+            className='post-content'
+            dangerouslySetInnerHTML={this.markup()} />
+        </div>
       </MainTemplate>
     )
   }
@@ -16,7 +30,7 @@ class PostPresentation extends React.Component {
   title () {
     const {
       title
-    } = this.props.post
+    } = this.props
 
     return {
       __html: title.rendered
@@ -26,7 +40,7 @@ class PostPresentation extends React.Component {
   markup () {
     const {
       content
-    } = this.props.post
+    } = this.props
 
     return {
       __html: content.rendered
